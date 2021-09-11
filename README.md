@@ -15,6 +15,6 @@ Remember: Never give your token to anyone, they can do bad things with it! Treat
 The .env is here for you to secure your token
 
 ## Issues, Questions or else
-If you have any issues or else of that template you can do the following things:
 
-* Open an issue ticket here
+* I don't even know if i finished this bot 
+* If there are some errors, idc fix them yourself
