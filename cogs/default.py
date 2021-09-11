@@ -90,21 +90,6 @@ class DefaultCommands(commands.Cog):
                               color=discord.Color.blurple())
         await ctx.send(embed=embed)
 
-    @help.command(name="customcooldown")
-    @commands.guild_only()
-    @commands.cooldown(1, 3, BucketType.user)
-    async def _customcooldown(self, ctx):
-        embed = discord.Embed(title="Custom cooldown command",
-                              description=f"Sets a custom cooldown for the commands. (normal cooldown is 3 seconds for normal users)\n"
-                                          f"\n"
-                                          f"**Aliases**: cc, setcooldown\n"
-                                          f"**Usage**: `{ctx.prefix}customcooldown <seconds>`\n"
-                                          f"\n"
-                                          f"**Note**:\n"
-                                          f"Custom cooldown cannot be under 2 seconds and not higher than 10 seconds.",
-                              color=discord.Color.blurple())
-        await ctx.send(embed=embed)
-
     @help.command(name="configure")
     @commands.guild_only()
     @commands.cooldown(1, 3, BucketType.user)
