@@ -17,5 +17,5 @@ The .env is here for you to secure your token
 
 ## Issues, Questions or else
 
-* I don't even know if i finished this bot 
+* I don't know if I even finished this bot 
 * If there are some errors, idc fix them yourself
