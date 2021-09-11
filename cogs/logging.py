@@ -304,13 +304,6 @@ class LoggyBot(commands.Cog, name="Loggy Main"):
                     channel1 = self.bot.get_channel(id=int(result1[0]))
                     await channel1.send(embed=embed)
 
-    # @commands.Cog.listener()
-    # async def on_user_update(self, before, after):
-        #db = sqlite3.connect('./db/loggy.sqlite')
-        #cursor = db.cursor()
-        #cursor.execute(f"SELECT user_update FROM main WHERE guild_id = {before.guild.id}")
-        #result = cursor.fetchone()
-
     @commands.Cog.listener()
     async def on_message_delete(self, message):
         db = sqlite3.connect('./db/loggy.sqlite')
