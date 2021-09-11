@@ -66,56 +66,6 @@ class Misc(commands.Cog, name="Miscellaneous"):
         db.commit()
         db.close()
 
-    @commands.command(aliases=['cc', 'Customcooldown', 'setcooldown', 'Setcooldown'])
-    @commands.guild_only()
-    @commands.cooldown(1, 2, BucketType.user)
-    @commands.has_permissions(manage_guild=True)
-    async def customcooldown(self, ctx, seconds: int = None):
-        db = sqlite3.connect('./db/cooldown.sqlite')
-        cursor = db.cursor()
-        cursor.execute(f"SELECT seconds FROM main WHERE guild_id = {ctx.guild.id}")
-        result = cursor.fetchone()
-        if result:
-            if seconds == result[0]:
-                return await ctx.send("You already have this amount of seconds configured.")
-        if seconds is None:
-            await ctx.send("Please provide a number.")
-        if seconds > 10:
-            return await ctx.send("You can't set a cooldown higher than 10 seconds.")
-        if seconds < 2:
-            return await ctx.send("You can't set the cooldown under 2 seconds.")
-        if result is None:
-            cursor.execute(f"INSERT INTO main(guild_id, seconds) VALUES({ctx.guild.id},{seconds})")
-            embed = discord.Embed(description=f"Custom cooldown has been set to {seconds} seconds.",
-                                  color=discord.Color.blue())
-            await ctx.send(embed=embed)
-        if result is not None:
-            cursor.execute(f"UPDATE main SET seconds = {seconds} WHERE guild_id = {ctx.guild.id}")
-            embed = discord.Embed(description=f"Custom cooldown has been updated to {seconds} seconds",
-                                  color=discord.Color.blue())
-            await ctx.send(embed=embed)
-        db.commit()
-        db.close()
-
-    @commands.command(aliases=['rcc', 'RCC', 'Rcc', 'Resetcooldown', 'resetcooldown', 'Resetcustomcooldown'])
-    @commands.has_permissions(manage_guild=True)
-    @commands.guild_only()
-    @commands.cooldown(1, 2, BucketType.user)
-    async def resetcustomcooldown(self, ctx):
-        db = sqlite3.connect('./db/cooldown.sqlite')
-        cursor = db.cursor()
-        cursor.execute(f"SELECT seconds FROM main WHERE guild_id = {ctx.guild.id}")
-        result = cursor.fetchone()
-        if result is not None:
-            cursor.execute("DELETE FROM main WHERE guild_id = '{}' and seconds = '{}'".format(ctx.guild.id, result[0]))
-            embed = discord.Embed(description=f"Custom cooldown for this guild has been reset.",
-                                  color=discord.Color.blue())
-            await ctx.send(embed=embed)
-        if result is None:
-            await ctx.send("You don't had a custom cooldown before.")
-        db.commit()
-        db.close()
-
     @commands.group(invoke_without_command=True)
     @commands.guild_only()
     @commands.cooldown(1, 3, BucketType.user)
