@@ -8,6 +8,7 @@ Install all the requirements with this command:
 ```
 pip install -r requirements.txt
 ```
+* Ofc you need Python too, https://python.org
 
 ## How to setup .env file
 in this .env file paste your token in it and it automatically will be changed 
